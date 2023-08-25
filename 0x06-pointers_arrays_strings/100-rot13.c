@@ -1,22 +1,36 @@
 #include "main.h"
 
 /**
- *_strncat - concatenates two strings but add inputted number of bytes
- *@dest: string to be appended upon
- *@src: string to be completed at the end of dest
- *@n : integer parameter to compare index to
- *Return: return new concatenated string
+ *rot13 - encodes strings using rot13.
+ *@s: pointer to string.
+ *
+ *Return: pointer to encoded string.
  */
-
-char *_strncat(char *dest, char *src, int n)
+char *rot13(char *s)
 {
-	int index = 0, dest_len = 0;
+	int stringCount, rotate;
+	char x[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+		     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+		     'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+		     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+		     'Z'};
 
-	while (dest[index++])
-		dest_len++;
+	char y[] = {'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+		     'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+		     'm', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+		     'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+		     'M'};
 
-	for (index = 0; src[index] && index < n; index++)
-		dest[dest_len++] = src[index];
-
-	return (dest);
+	for (stringCount = 0; s[stringCount] != '\0'; stringCount++)
+	{
+		for (rotate = 0; rotate < 53; rotate++)
+		{
+			if (x[rotate] == s[stringCount])
+			{
+				s[stringCount] = y[rotate];
+				break;
+			}
+		}
+	}
+	return (s);
 }
