@@ -1,17 +1,41 @@
 #include "main.h"
 
-
 /**
- * *malloc_checked - allocate memory with malloc
- * @b: unsigned int type
- * Return: return pointer
+ * create_array - Returns a pointer to a newly allocated space in memory.
+ *
+ * @size: unsigned int
+ *
+ * @c: char
+ *
+ * Return: char pointer
  */
-void *malloc_checked(unsigned int b)
-{
-	int *ptr;
 
-	ptr = malloc(b);
-	if (ptr == NULL)
-		exit(98);
-	return (ptr);
+char *create_array(unsigned int size, char c)
+{
+	unsigned int counter;
+	char *character;
+
+	counter = 0;
+
+
+	if (size == 0)
+	{
+		return (NULL);
+	}
+
+	character = malloc(sizeof(char) * size);
+
+	if (character == NULL)
+	{
+		return (NULL);
+	}
+	while (counter < size)
+	{
+		character[counter] = c;
+		counter++;
+	}
+
+	character[counter] = '\0';
+
+	return (character);
 }
